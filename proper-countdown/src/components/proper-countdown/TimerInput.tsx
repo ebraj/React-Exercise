@@ -5,12 +5,12 @@ type Props = {};
 
 export default function TimerInput({}: Props) {
   const [startTimer, setStartTimer] = useState(false);
-  const [finalTimeInSeconds, setFinalTimeInSeconds] = useState(0);
+  const [finalTimeInMSeconds, setFinalTimeInMSeconds] = useState(0);
   const formData = useRef(null);
   let calculatedInSeconds = 0;
-  const finalTimeInMS = new Date().getTime() + finalTimeInSeconds * 1000;
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const now = new Date();
     const { timerValue, timeformat } = formData.current as any;
     e.preventDefault();
 
@@ -20,38 +20,40 @@ export default function TimerInput({}: Props) {
       case "years":
         calculatedInSeconds =
           Number(timerValue.value) * 365 * 24 * 60 * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "months":
         calculatedInSeconds =
           Number(timerValue.value) * 30 * 24 * 60 * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "weeks":
         calculatedInSeconds =
           Number(timerValue.value) * 7 * 24 * 60 * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "days":
         calculatedInSeconds = Number(timerValue.value) * 24 * 60 * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "hours":
         calculatedInSeconds = Number(timerValue.value) * 60 * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "minutes":
         calculatedInSeconds = Number(timerValue.value) * 60 * 1000;
-        setFinalTimeInSeconds(calculatedInSeconds);
-        setStartTimer(true);
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "seconds":
         calculatedInSeconds = Number(timerValue.value) * 1000;
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
       case "default":
         calculatedInSeconds = Number(timerValue.value) * 1000;
+        setFinalTimeInMSeconds(now.getTime() + calculatedInSeconds);
         break;
     }
+    setStartTimer(true);
   };
 
   return (
@@ -89,11 +91,8 @@ export default function TimerInput({}: Props) {
 
       <Countdown
         {...{
-          finalTimeInSeconds,
-          finalTimeInMS: new Date().getTime() + finalTimeInSeconds,
-          setFinalTimeInSeconds,
+          finalTimeInMSeconds,
           startTimer,
-          setStartTimer,
         }}
       />
     </>
