@@ -2,21 +2,15 @@
 
 ## Learnings
 
-- Optimized API calls with the cancelling the requests on unmount.
-- Custom debounce hook.
-- Keystroke.
-- `Set` method to remove the duplicates.
+- Playing with the Date() object
+- Creating the custom hooks
+- Logic of creating the countdown
 
 ## References
 
-- Youtube :
-
-  - https://youtu.be/AsvybgZTryo?si=CuoSzhSIjpVuTop7
-
 - Blogs :
-  - Handling the request cancel on fetch and axios - https://plainenglish.io/community/how-to-cancel-fetch-and-axios-requests-in-react-useeffect-hook
-  - Removing the duplicates from the array - https://codedamn.com/news/javascript/how-to-remove-duplicates-using-javascript-array
+  - https://blog.greenroots.info/how-to-create-a-countdown-timer-using-react-hooks
 
 ## UI
 
-![Image](Multi-Select-Search.png)
+![Image](./Proper-Countdown.png)
